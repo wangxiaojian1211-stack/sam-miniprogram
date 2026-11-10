@@ -1,0 +1,42 @@
+page { background: #F4F7FB; }
+.addr-card { background: #fff; display: flex; align-items: center; gap: 16rpx; padding: 28rpx 24rpx; margin: 20rpx 24rpx 18rpx; border-radius: 24rpx; box-shadow: 0 10rpx 28rpx rgba(31,42,61,0.07); }
+.addr-icon { font-size: 40rpx; }
+.addr-info { flex: 1; }
+.addr-top { display: flex; gap: 20rpx; margin-bottom: 8rpx; }
+.addr-name { font-size: 30rpx; font-weight: 700; color: #1F2A3D; }
+.addr-phone { font-size: 28rpx; color: #536072; }
+.addr-detail { font-size: 26rpx; color: #7A8799; display: block; line-height: 1.5; }
+.addr-arrow { color: #A5AFBD; font-size: 40rpx; }
+
+.card { background: #fff; padding: 26rpx; margin: 0 24rpx 18rpx; border-radius: 24rpx; box-shadow: 0 10rpx 28rpx rgba(31,42,61,0.07); }
+.card-title { font-size: 30rpx; font-weight: 700; color: #1F2A3D; display: block; margin-bottom: 20rpx; }
+
+.order-item { display: flex; align-items: center; gap: 16rpx; padding: 14rpx 0; border-bottom: 1rpx solid #EEF3F8; }
+.order-item:last-child { border: none; }
+.oi-img { width: 100rpx; height: 100rpx; border-radius: 16rpx; background: #EEF3F8; }
+.oi-info { flex: 1; }
+.oi-name { font-size: 28rpx; color: #1F2A3D; display: block; font-weight: 600; }
+.oi-spec { font-size: 24rpx; color: #7A8799; display: block; margin-top: 6rpx; }
+.oi-price { color: #E31837; font-size: 30rpx; font-weight: bold; }
+
+.fee-row { display: flex; justify-content: space-between; font-size: 28rpx; color: #536072; padding: 10rpx 0; }
+.fee-total { font-weight: 700; font-size: 30rpx; color: #1F2A3D; }
+.divider { height: 1rpx; background: #E8EEF6; margin: 8rpx 0; }
+.price { color: #E31837; }
+.price-lg { color: #E31837; font-size: 38rpx; font-weight: bold; }
+
+.remark-input { width: 100%; min-height: 118rpx; font-size: 28rpx; color: #1F2A3D; line-height: 1.6; background: #F7FAFD; border-radius: 16rpx; padding: 16rpx; box-sizing: border-box; }
+.deliver-card { display: flex; align-items: center; gap: 12rpx; font-size: 28rpx; color: #536072; }
+.deliver-time { color: #0B3A75; font-weight: 700; }
+
+.bottom-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(255,255,255,0.96);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16rpx 24rpx calc(env(safe-area-inset-bottom) + 16rpx);
+  box-shadow: 0 -10rpx 32rpx rgba(31,42,61,0.1);
+}
+.pay-label { font-size: 26rpx; color: #536072; }
+.pay-price { color: #E31837; font-size: 40rpx; font-weight: bold; }
+.pay-btn { background: linear-gradient(135deg, #E31837, #F04B5F); color: #fff; border: none; border-radius: 50rpx; height: 84rpx; line-height: 1; font-size: 30rpx; padding: 0 60rpx; display: flex; align-items: center; justify-content: center; box-sizing: border-box; box-shadow: 0 12rpx 26rpx rgba(227,24,55,0.22); }
+.pay-btn::after { border: none; }

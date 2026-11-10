@@ -1,0 +1,60 @@
+<!-- 提交订单 -->
+<view class="page">
+  <!-- 收货地址 -->
+  <view class="addr-card" bindtap="changeAddr">
+    <view class="addr-icon">📍</view>
+    <view class="addr-info">
+      <view class="addr-top">
+        <text class="addr-name">{{userInfo.name}}</text>
+        <text class="addr-phone">{{userInfo.phone}}</text>
+      </view>
+      <text class="addr-detail">{{userInfo.address}}</text>
+    </view>
+    <text class="addr-arrow">›</text>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="card">
+    <text class="card-title">商品明细</text>
+    <view class="order-item" wx:for="{{cart}}" wx:key="id">
+      <image class="oi-img" src="{{item.img}}" mode="aspectFill"/>
+      <view class="oi-info">
+        <text class="oi-name">{{item.name}}</text>
+        <text class="oi-spec">{{item.spec}} × {{item.count}}</text>
+      </view>
+      <text class="oi-price">¥{{item.price}}</text>
+    </view>
+  </view>
+
+  <!-- 费用明细 -->
+  <view class="card">
+    <text class="card-title">费用明细</text>
+    <view class="fee-row"><text>商品合计</text><text>¥{{subtotal}}</text></view>
+    <view class="fee-row"><text>代购服务费</text><text class="price">¥{{serviceFee}}</text></view>
+    <view class="fee-row"><text>配送费</text><text class="price">¥{{deliveryFee}}</text></view>
+    <view class="divider"/>
+    <view class="fee-row fee-total"><text>实付金额</text><text class="price-lg">¥{{total}}</text></view>
+  </view>
+
+  <!-- 备注 -->
+  <view class="card">
+    <text class="card-title">订单备注</text>
+    <textarea class="remark-input" placeholder="如：请带发票、指定颜色等" bindinput="onRemark" value="{{remark}}" maxlength="100"/>
+  </view>
+
+  <!-- 预计配送 -->
+  <view class="card deliver-card">
+    <text>🕐 预计配送时间：</text>
+    <text class="deliver-time">今日 14:00 - 18:00</text>
+  </view>
+
+  <view class="safe-bottom"/>
+
+  <view class="bottom-bar">
+    <view>
+      <text class="pay-label">实付 </text>
+      <text class="pay-price">¥{{total}}</text>
+    </view>
+    <button class="pay-btn" bindtap="submitOrder">微信支付</button>
+  </view>
+</view>

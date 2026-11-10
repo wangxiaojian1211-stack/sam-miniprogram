@@ -1,0 +1,117 @@
+<!-- 商家店铺管理 -->
+<view class="page">
+  <view class="summary-hero">
+    <view>
+      <text class="summary-title">{{settings.storeName}}</text>
+      <text class="summary-desc">维护店铺名称、首页展示、商品图片、售价、代购服务费和上下架状态，保存后用户端实时生效。</text>
+    </view>
+    <view class="summary-pill">{{activeCount}}/{{products.length}} 上架</view>
+  </view>
+
+  <view class="settings-card">
+    <text class="card-title">基础信息</text>
+    <view class="setting-field">
+      <text class="field-label">店名</text>
+      <input value="{{settings.storeName}}" data-field="storeName" bindinput="onSettingInput" placeholder="请输入团队店名"/>
+    </view>
+    <view class="setting-field">
+      <text class="field-label">首页主标题</text>
+      <input value="{{settings.heroTitle}}" data-field="heroTitle" bindinput="onSettingInput" placeholder="如：山姆好物，当日代买"/>
+    </view>
+    <view class="setting-field">
+      <text class="field-label">首页说明</text>
+      <input value="{{settings.heroDesc}}" data-field="heroDesc" bindinput="onSettingInput" placeholder="请输入首页服务说明"/>
+    </view>
+    <button class="setting-save" bindtap="saveSettings">保存基础信息</button>
+  </view>
+
+  <view class="quick-actions">
+    <view class="quick-btn add" bindtap="toggleAddForm">{{showAddForm ? '收起新增' : '添加新商品'}}</view>
+    <view class="quick-btn" bindtap="resetProducts">恢复默认商品</view>
+  </view>
+
+  <view class="add-card" wx:if="{{showAddForm}}">
+    <text class="card-title">添加新商品</text>
+    <view class="new-product-row">
+      <view class="new-img-wrap" bindtap="chooseNewProductImage">
+        <image wx:if="{{newProduct.img}}" class="new-img" src="{{newProduct.img}}" mode="aspectFill"/>
+        <view wx:else class="new-img empty-img">+</view>
+        <text class="new-img-text">选择图片</text>
+      </view>
+      <view class="new-fields">
+        <view class="setting-field">
+          <text class="field-label">商品名称</text>
+          <input value="{{newProduct.name}}" data-field="name" bindinput="onNewProductInput" placeholder="如：瑞士卷蛋糕"/>
+        </view>
+        <view class="setting-field">
+          <text class="field-label">商品分类</text>
+          <picker mode="selector" range="{{productCategories}}" value="{{newCategoryIndex}}" bindchange="onNewCategoryChange">
+            <view class="picker-value">{{newProduct.category}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="add-grid">
+      <view class="setting-field">
+        <text class="field-label">规格</text>
+        <input value="{{newProduct.spec}}" data-field="spec" bindinput="onNewProductInput" placeholder="如：约700g"/>
+      </view>
+      <view class="setting-field">
+        <text class="field-label">单位</text>
+        <input value="{{newProduct.unit}}" data-field="unit" bindinput="onNewProductInput" placeholder="如：盒"/>
+      </view>
+      <view class="setting-field">
+        <text class="field-label">售价</text>
+        <input type="digit" value="{{newProduct.price}}" data-field="price" bindinput="onNewProductInput" placeholder="0"/>
+      </view>
+      <view class="setting-field">
+        <text class="field-label">代购费</text>
+        <input type="digit" value="{{newProduct.fee}}" data-field="fee" bindinput="onNewProductInput" placeholder="0"/>
+      </view>
+    </view>
+    <button class="add-submit" bindtap="addProduct">确认添加</button>
+  </view>
+
+  <view class="product-list">
+    <view class="product-card {{item.active ? '' : 'product-off'}}" wx:for="{{products}}" wx:key="id">
+      <view class="product-img-wrap">
+        <image class="product-img" src="{{item.img}}" mode="aspectFill"/>
+        <view class="img-btn" data-id="{{item.id}}" catchtap="chooseProductImage">换图</view>
+      </view>
+      <view class="product-main">
+        <view class="product-head">
+          <view>
+            <text class="product-name">{{item.name}}</text>
+            <text class="product-meta">{{item.category}} · {{item.spec}}</text>
+          </view>
+          <switch checked="{{item.active}}" color="#0B3A75" data-id="{{item.id}}" bindchange="toggleActive"/>
+        </view>
+
+        <view class="edit-grid">
+          <view class="edit-field">
+            <text class="field-label">售价</text>
+            <view class="input-wrap">
+              <text>¥</text>
+              <input type="digit" value="{{item.price}}" data-id="{{item.id}}" data-field="price" bindinput="onFieldInput"/>
+            </view>
+          </view>
+          <view class="edit-field">
+            <text class="field-label">代购费</text>
+            <view class="input-wrap">
+              <text>¥</text>
+              <input type="digit" value="{{item.fee}}" data-id="{{item.id}}" data-field="fee" bindinput="onFieldInput"/>
+            </view>
+          </view>
+        </view>
+
+        <view class="product-bottom">
+          <text class="status-tag {{item.active ? 'status-on' : 'status-off'}}">{{item.active ? '用户端展示中' : '已下架隐藏'}}</text>
+          <text class="total-price">用户价 ¥{{item.totalPrice}}</text>
+        </view>
+        <button class="product-save" data-id="{{item.id}}" bindtap="saveProductItem">保存本商品</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="safe-bottom"/>
+</view>

@@ -1,0 +1,56 @@
+<!-- 商家采购清单 -->
+<view class="page">
+  <!-- 合并统计 -->
+  <view class="summary-bar">
+    <view>
+      <text class="summary-text">今日需采购 {{totalItems}} 种商品，共 {{totalCount}} 件</text>
+      <text class="summary-sub">已采购 {{purchasedCount}} 件 · 未采购 {{remainingCount}} 件</text>
+    </view>
+    <view class="summary-btn" bindtap="exportList">导出清单</view>
+  </view>
+
+  <!-- 按货架区域分组 -->
+  <view class="zone-section" wx:for="{{zones}}" wx:key="name" wx:for-index="zoneIdx">
+    <view class="zone-header">
+      <text class="zone-icon">{{item.icon}}</text>
+      <text class="zone-name">{{item.name}}</text>
+      <text class="zone-count">{{item.items.length}}种</text>
+    </view>
+    <view
+      class="purchase-item"
+      wx:for="{{item.items}}"
+      wx:key="name"
+      wx:for-item="g"
+      wx:for-index="gidx"
+      catchtap="toggleCheck"
+      data-zone="{{zoneIdx}}"
+      data-gidx="{{gidx}}"
+    >
+      <view class="check-box {{g.checked ? 'checked' : ''}}">
+        <text wx:if="{{g.checked}}">✓</text>
+      </view>
+      <view class="pi-info {{g.checked ? 'pi-done' : ''}}">
+        <text class="pi-name">{{g.name}}</text>
+        <text class="pi-orders">来自 {{g.orderCount}} 个订单 · 总量 {{g.totalCount}}{{g.unit}}</text>
+        <view class="qty-summary">
+          <text class="qty-done">已采购 {{g.purchasedCount}}{{g.unit}}</text>
+          <text class="qty-left">未采购 {{g.remainingCount}}{{g.unit}}</text>
+        </view>
+      </view>
+      <view class="pi-qty-wrap">
+        <text class="pi-qty">剩 {{g.remainingCount}}</text>
+        <text class="pi-unit">{{g.unit}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 进度 -->
+  <view class="progress-bar-wrap">
+    <text class="progress-text">已完成 {{checkedCount}} / {{totalItems}} 种，采购进度 {{progress}}%</text>
+    <view class="progress-track">
+      <view class="progress-fill" style="width: {{progress}}%"/>
+    </view>
+  </view>
+
+  <view class="safe-bottom"/>
+</view>

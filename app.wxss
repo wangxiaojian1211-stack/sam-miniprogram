@@ -1,0 +1,70 @@
+/* 全局样式 */
+page {
+  background-color: #F4F7FB;
+  font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 28rpx;
+  color: #1F2A3D;
+}
+
+.page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #EAF2FB 0%, #F4F7FB 360rpx, #F4F7FB 100%);
+}
+
+/* 按钮 */
+.btn-primary {
+  background: linear-gradient(135deg, #0B3A75, #1558A6);
+  color: #fff;
+  border-radius: 44rpx;
+  border: none;
+  font-size: 32rpx;
+  font-weight: 600;
+  height: 88rpx;
+  line-height: 88rpx;
+  box-shadow: 0 12rpx 26rpx rgba(11,58,117,0.22);
+}
+.btn-primary::after { border: none; }
+
+.btn-outline {
+  background: #fff;
+  color: #0B3A75;
+  border-radius: 34rpx;
+  border: 2rpx solid #D8E3F1;
+  font-size: 28rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+}
+.btn-outline::after { border: none; }
+
+/* 卡片 */
+.card {
+  background: #fff;
+  border-radius: 24rpx;
+  margin: 20rpx 24rpx;
+  padding: 24rpx;
+  box-shadow: 0 12rpx 32rpx rgba(31,42,61,0.07);
+}
+
+/* 价格红色 */
+.price { color: #E31837; font-weight: bold; }
+.price-lg { color: #E31837; font-weight: bold; font-size: 40rpx; letter-spacing: 0; }
+
+/* 标签 */
+.tag {
+  display: inline-block;
+  padding: 4rpx 12rpx;
+  border-radius: 4rpx;
+  font-size: 22rpx;
+}
+.tag-red { background: #FFF2F4; color: #E31837; border: 1rpx solid #FFD3DA; }
+.tag-gray { background: #F1F4F8; color: #7A8799; }
+
+/* 分割线 */
+.divider {
+  height: 1rpx;
+  background: #E8EEF6;
+  margin: 16rpx 0;
+}
+
+/* 底部安全区占位 */
+.safe-bottom { height: calc(env(safe-area-inset-bottom) + 120rpx); }

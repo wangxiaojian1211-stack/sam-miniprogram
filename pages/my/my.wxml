@@ -1,0 +1,94 @@
+<!-- 我的 -->
+<view class="page">
+  <view class="custom-nav" style="{{navStyle}}">
+    <text class="custom-nav-title">我的</text>
+  </view>
+
+  <!-- 用户信息头 -->
+  <view class="user-header">
+    <view class="avatar">{{userInfo.name.substring(0,1)}}</view>
+    <view class="user-info">
+      <text class="user-name">{{userInfo.name}}</text>
+      <text class="user-phone">{{userInfo.phone}}</text>
+    </view>
+  </view>
+
+  <!-- 订单快捷入口 -->
+  <view class="order-nav card">
+    <text class="section-label">我的订单</text>
+    <view class="order-nav-list">
+      <view class="nav-item" bindtap="goOrders" data-status="pending">
+        <text class="nav-icon">⏳</text>
+        <text class="nav-text">待处理</text>
+        <view class="nav-badge" wx:if="{{pendingCount > 0}}">{{pendingCount}}</view>
+      </view>
+      <view class="nav-item" bindtap="goOrders" data-status="purchasing">
+        <text class="nav-icon">🛒</text>
+        <text class="nav-text">采购中</text>
+      </view>
+      <view class="nav-item" bindtap="goOrders" data-status="delivering">
+        <text class="nav-icon">🚗</text>
+        <text class="nav-text">配送中</text>
+      </view>
+      <view class="nav-item" bindtap="goOrders" data-status="done">
+        <text class="nav-icon">✅</text>
+        <text class="nav-text">已完成</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 历史订单 -->
+  <view class="card">
+    <view class="list-header">
+      <text class="section-label">历史订单</text>
+      <text class="view-all" bindtap="goAllOrders">查看全部 ›</text>
+    </view>
+    <view class="history-item" wx:for="{{orders}}" wx:key="id" bindtap="goTrack" data-id="{{item.id}}">
+      <view class="hi-top">
+        <text class="hi-id">{{item.id}}</text>
+        <text class="hi-status hi-status-{{item.status}}">{{item.statusText}}</text>
+      </view>
+      <text class="hi-goods">{{item.items[0].name}} 等{{item.items.length}}件商品</text>
+      <view class="hi-bottom">
+        <text class="hi-time">{{item.createTime}}</text>
+        <text class="hi-price">¥{{item.total}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 其他功能 -->
+  <view class="menu-card card">
+    <view class="menu-item merchant-entry" bindtap="goAdmin">
+      <text class="mi-icon">⚙️</text>
+      <view class="mi-main">
+        <text class="mi-text">商家管理</text>
+        <text class="mi-desc">订单、采购清单、商品价格维护</text>
+      </view>
+      <text class="mi-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goAddr">
+      <text class="mi-icon">📍</text>
+      <view class="mi-main">
+        <text class="mi-text">收货地址</text>
+        <text class="mi-desc">{{userInfo.address}}</text>
+      </view>
+      <text class="mi-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goHelp">
+      <text class="mi-icon">💬</text>
+      <view class="mi-main">
+        <text class="mi-text">联系客服</text>
+      </view>
+      <text class="mi-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goAbout">
+      <text class="mi-icon">ℹ️</text>
+      <view class="mi-main">
+        <text class="mi-text">关于我们</text>
+      </view>
+      <text class="mi-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="safe-bottom"/>
+</view>

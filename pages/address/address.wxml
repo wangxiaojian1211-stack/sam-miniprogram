@@ -1,0 +1,25 @@
+<!-- 收货地址 -->
+<view class="page">
+  <view class="hero">
+    <text class="hero-title">收货地址</text>
+    <text class="hero-desc">用于下单配送，请填写真实姓名、联系电话和详细地址。</text>
+  </view>
+
+  <view class="form-card">
+    <view class="form-item">
+      <text class="label">收货人</text>
+      <input value="{{form.name}}" data-field="name" bindinput="onInput" placeholder="请输入收货人姓名"/>
+    </view>
+    <view class="form-item">
+      <text class="label">联系电话</text>
+      <input type="number" value="{{form.phone}}" data-field="phone" bindinput="onInput" placeholder="请输入手机号"/>
+    </view>
+    <view class="form-item">
+      <text class="label">详细地址</text>
+      <textarea value="{{form.address}}" data-field="address" bindinput="onInput" placeholder="如：小区、楼栋、单元、门牌号" maxlength="120"/>
+    </view>
+  </view>
+
+  <button class="save-btn" bindtap="saveAddress">保存地址</button>
+  <view class="safe-bottom"/>
+</view>

@@ -1,0 +1,44 @@
+page { background: #F4F7FB; }
+
+.empty { display: flex; flex-direction: column; align-items: center; padding: 180rpx 0; }
+.empty-icon { font-size: 100rpx; }
+.empty-text { color: #8A96A8; font-size: 28rpx; margin: 20rpx 0 40rpx; }
+.go-shop { background: #0B3A75; color: #fff; border: none; border-radius: 50rpx; padding: 0 60rpx; height: 80rpx; line-height: 1; font-size: 30rpx; display: flex; align-items: center; justify-content: center; box-sizing: border-box; box-shadow: 0 12rpx 26rpx rgba(11,58,117,0.22); }
+.go-shop::after { border: none; }
+
+.cart-item {
+  display: flex; align-items: flex-start; gap: 20rpx;
+  background: #fff; margin: 18rpx 24rpx 0; padding: 22rpx;
+  position: relative;
+  border-radius: 24rpx;
+  box-shadow: 0 10rpx 28rpx rgba(31,42,61,0.07);
+}
+.item-img { width: 148rpx; height: 148rpx; border-radius: 18rpx; flex-shrink: 0; background: #EEF3F8; }
+.item-info { flex: 1; }
+.item-name { font-size: 29rpx; font-weight: 700; color: #1F2A3D; display: block; margin-bottom: 8rpx; padding-right: 42rpx; line-height: 1.35; }
+.item-spec { font-size: 24rpx; color: #7A8799; display: block; margin-bottom: 16rpx; }
+.item-bottom { display: flex; align-items: center; justify-content: space-between; }
+.item-price { color: #E31837; font-size: 32rpx; font-weight: bold; }
+.qty-ctrl { display: flex; align-items: center; gap: 14rpx; background: #F4F7FB; border-radius: 999rpx; padding: 6rpx; }
+.q-btn { width: 46rpx; height: 46rpx; border-radius: 50%; border: 2rpx solid #D8E3F1; display: flex; align-items: center; justify-content: center; color: #0B3A75; font-size: 30rpx; background: #fff; }
+.q-btn-add { background: #0B3A75; color: #fff; border: none; }
+.q-num { font-size: 28rpx; font-weight: bold; min-width: 32rpx; text-align: center; }
+.del-btn { position: absolute; top: 18rpx; right: 18rpx; color: #A5AFBD; font-size: 40rpx; width: 48rpx; height: 48rpx; display: flex; align-items: center; justify-content: center; }
+
+.fee-card { background: #fff; margin: 20rpx 24rpx 0; padding: 26rpx; border-radius: 24rpx; box-shadow: 0 10rpx 28rpx rgba(31,42,61,0.07); }
+.fee-row { display: flex; justify-content: space-between; font-size: 28rpx; color: #536072; padding: 9rpx 0; }
+.fee-total { font-weight: 700; font-size: 30rpx; color: #1F2A3D; }
+.divider { height: 1rpx; background: #E8EEF6; margin: 14rpx 0; }
+
+.bottom-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(255,255,255,0.96);
+  display: flex; align-items: center;
+  padding: 16rpx 24rpx calc(env(safe-area-inset-bottom) + 16rpx);
+  box-shadow: 0 -10rpx 32rpx rgba(31,42,61,0.1);
+}
+.total-area { flex: 1; }
+.total-label { font-size: 26rpx; color: #536072; }
+.total-price { color: #E31837; font-size: 40rpx; font-weight: bold; }
+.checkout-btn { background: linear-gradient(135deg, #E31837, #F04B5F); color: #fff; border: none; border-radius: 50rpx; height: 84rpx; line-height: 1; font-size: 30rpx; padding: 0 48rpx; display: flex; align-items: center; justify-content: center; box-sizing: border-box; box-shadow: 0 12rpx 26rpx rgba(227,24,55,0.22); }
+.checkout-btn::after { border: none; }

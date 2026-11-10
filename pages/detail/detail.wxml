@@ -1,0 +1,48 @@
+<!-- 商品详情页 -->
+<view class="page">
+  <view class="img-wrap">
+    <image class="main-img" src="{{product.img}}" mode="aspectFill"/>
+    <view class="hot-badge" wx:if="{{product.hot}}">热卖</view>
+  </view>
+
+  <view class="info-card">
+    <view class="price-row">
+      <text class="price-main">¥{{totalPrice}}</text>
+      <text class="price-sub">山姆原价¥{{product.price}} + 代购费¥{{product.fee}}</text>
+    </view>
+    <text class="goods-name">{{product.name}}</text>
+    <text class="goods-spec">{{product.spec}} · {{product.category}}</text>
+  </view>
+
+  <view class="card">
+    <text class="card-title">商品说明</text>
+    <text class="card-desc">{{product.desc}}</text>
+    <view class="divider"/>
+    <view class="notice-row">
+      <text class="notice-icon">⚠️</text>
+      <text class="notice-text">散装称重商品（如水果、肉类）按实际采购重量结算，最终差价在配送后自动补退。</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="card-title">服务保障</text>
+    <view class="guarantee-list">
+      <view class="guarantee-item"><text>✅</text><text>正品保障·山姆直采</text></view>
+      <view class="guarantee-item"><text>✅</text><text>当日下单·次日送达</text></view>
+      <view class="guarantee-item"><text>✅</text><text>质量问题·平台赔付</text></view>
+    </view>
+  </view>
+
+  <view class="safe-bottom"/>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="qty-ctrl">
+      <view class="qty-btn" bindtap="decQty">−</view>
+      <text class="qty-num">{{qty}}</text>
+      <view class="qty-btn qty-btn-add" bindtap="incQty">+</view>
+    </view>
+    <button class="add-cart-btn" bindtap="addCart">加入购物车</button>
+    <button class="buy-btn" bindtap="buyNow">立即购买</button>
+  </view>
+</view>

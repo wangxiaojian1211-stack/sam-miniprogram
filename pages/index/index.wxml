@@ -1,0 +1,79 @@
+<!-- 首页 -->
+<view class="page">
+  <view class="custom-nav" style="{{navStyle}}">
+    <text class="custom-nav-title">{{storeSettings.storeName}}</text>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-inner" bindtap="goSearch">
+      <view class="search-icon"></view>
+      <text class="search-placeholder">搜索山姆商品</text>
+    </view>
+    <view class="notice-btn" bindtap="goNotice">
+      <text>公告</text>
+    </view>
+  </view>
+
+  <view class="hero-card">
+    <view class="hero-copy">
+      <text class="hero-kicker">{{storeSettings.storeName}} · 代购服务</text>
+      <text class="hero-title">{{storeSettings.heroTitle}}</text>
+      <text class="hero-desc">{{storeSettings.heroDesc}}</text>
+    </view>
+    <swiper class="banner" autoplay indicator-dots indicator-color="rgba(255,255,255,0.45)" indicator-active-color="#fff" circular>
+      <swiper-item wx:for="{{banners}}" wx:key="idx">
+        <image class="banner-img" src="{{item}}" mode="aspectFill"/>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 品类标签 -->
+  <scroll-view class="cat-scroll" scroll-x>
+    <view class="cat-list">
+      <view
+        class="cat-item {{currentCat === item ? 'cat-item-active' : ''}}"
+        wx:for="{{categories}}" wx:key="*this"
+        bindtap="onCatTap" data-cat="{{item}}"
+      >{{item}}</view>
+    </view>
+  </scroll-view>
+
+  <!-- 热销标签 -->
+  <view class="section-title">
+    <view>
+      <text class="section-main">精选好物</text>
+      <text class="title-sub">天天低价 · 品质保障</text>
+    </view>
+    <text class="section-more">严选热卖</text>
+  </view>
+
+  <!-- 商品网格 -->
+  <view class="goods-grid">
+    <view
+      class="goods-card"
+      wx:for="{{products}}" wx:key="id"
+      bindtap="goDetail" data-id="{{item.id}}"
+    >
+      <view class="goods-img-wrap">
+        <image class="goods-img" src="{{item.img}}" mode="aspectFill" lazy-load/>
+        <view class="hot-tag" wx:if="{{item.hot}}">热卖</view>
+      </view>
+      <view class="goods-info">
+        <text class="goods-name">{{item.name}}</text>
+        <text class="goods-spec">{{item.spec}}</text>
+        <view class="goods-bottom">
+          <view>
+            <text class="goods-price">¥{{item.price}}</text>
+            <text class="goods-fee">+代购¥{{item.fee}}</text>
+          </view>
+          <view class="add-btn" catchtap="addCart" data-id="{{item.id}}">
+            <text>+</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="safe-bottom"/>
+</view>

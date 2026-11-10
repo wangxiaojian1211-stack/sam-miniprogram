@@ -1,0 +1,11 @@
+.DS_Store
+._*
+node_modules/
+project.private.config.json
+*.log
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+upload-info*.json

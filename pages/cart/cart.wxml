@@ -1,0 +1,54 @@
+<!-- 购物车 -->
+<view class="page">
+  <view wx:if="{{cart.length === 0}}" class="empty">
+    <text class="empty-icon">🛒</text>
+    <text class="empty-text">购物车是空的</text>
+    <button class="go-shop" bindtap="goShop">去选购</button>
+  </view>
+
+  <view wx:else>
+    <view class="cart-item" wx:for="{{cart}}" wx:key="id">
+      <image class="item-img" src="{{item.img}}" mode="aspectFill"/>
+      <view class="item-info">
+        <text class="item-name">{{item.name}}</text>
+        <text class="item-spec">{{item.spec}}</text>
+        <view class="item-bottom">
+          <text class="item-price">¥{{item.price}}</text>
+          <view class="qty-ctrl">
+            <view class="q-btn" catchtap="dec" data-id="{{item.id}}">−</view>
+            <text class="q-num">{{item.count}}</text>
+            <view class="q-btn q-btn-add" catchtap="inc" data-id="{{item.id}}">+</view>
+          </view>
+        </view>
+      </view>
+      <view class="del-btn" catchtap="remove" data-id="{{item.id}}">×</view>
+    </view>
+
+    <!-- 费用预览 -->
+    <view class="fee-card">
+      <view class="fee-row">
+        <text>商品小计</text>
+        <text>¥{{subtotal}}</text>
+      </view>
+      <view class="fee-row">
+        <text>代购服务费</text>
+        <text class="price">¥{{serviceFee}}</text>
+      </view>
+      <view class="divider"/>
+      <view class="fee-row fee-total">
+        <text>合计</text>
+        <text class="price-lg">¥{{total}}</text>
+      </view>
+    </view>
+
+    <view class="safe-bottom"/>
+
+    <view class="bottom-bar">
+      <view class="total-area">
+        <text class="total-label">合计：</text>
+        <text class="total-price">¥{{total}}</text>
+      </view>
+      <button class="checkout-btn" bindtap="goOrder">去结算 ({{cart.length}}件)</button>
+    </view>
+  </view>
+</view>

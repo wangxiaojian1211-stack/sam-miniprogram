@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/cart/cart",
+    "pages/order/order",
+    "pages/track/track",
+    "pages/my/my",
+    "pages/address/address",
+    "pages/admin-products/admin-products",
+    "pages/admin-orders/admin-orders",
+    "pages/admin-purchase/admin-purchase"
+  ],
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#0B3A75",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home_gray.png",
+        "selectedIconPath": "images/home.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "images/cart_gray.png",
+        "selectedIconPath": "images/cart.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/my_gray.png",
+        "selectedIconPath": "images/my.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#0B3A75",
+    "navigationBarTitleText": "山姆代购",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F4F7FB"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

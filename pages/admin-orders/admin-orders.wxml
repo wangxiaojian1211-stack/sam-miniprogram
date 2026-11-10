@@ -1,0 +1,104 @@
+<!-- 商家订单管理后台 -->
+<view class="page">
+  <!-- 今日数据 -->
+  <view class="stats-row">
+    <view class="stat-card">
+      <text class="stat-num">{{stats.todayOrders}}</text>
+      <text class="stat-label">今日订单</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-num red">¥{{stats.todayRevenue}}</text>
+      <text class="stat-label">今日营收</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-num orange">{{stats.pendingCount}}</text>
+      <text class="stat-label">待处理</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-num green">{{stats.doneCount}}</text>
+      <text class="stat-label">已完成</text>
+    </view>
+  </view>
+
+  <view class="admin-tools">
+    <view class="tool-card" bindtap="goProducts">
+      <text class="tool-icon">🏷️</text>
+      <view>
+        <text class="tool-title">店铺管理</text>
+        <text class="tool-desc">店名、商品、价格维护</text>
+      </view>
+    </view>
+    <view class="tool-card" bindtap="goPurchase">
+      <text class="tool-icon">📋</text>
+      <view>
+        <text class="tool-title">采购清单</text>
+        <text class="tool-desc">按区域汇总采购</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 状态筛选Tab -->
+  <scroll-view class="tab-scroll" scroll-x>
+    <view class="tab-list">
+      <view
+        class="tab-item {{currentTab === item.key ? 'tab-active' : ''}}"
+        wx:for="{{tabs}}" wx:key="key"
+        bindtap="onTabTap" data-key="{{item.key}}"
+      >
+        {{item.label}}
+        <view class="tab-badge" wx:if="{{item.count > 0}}">{{item.count}}</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 订单列表 -->
+  <view class="order-list">
+    <view class="order-card" wx:for="{{filteredOrders}}" wx:key="id">
+      <view class="oc-header">
+        <text class="oc-id">{{item.id}}</text>
+        <text class="oc-time">{{item.createTime}}</text>
+        <text class="oc-status oc-status-{{item.status}}">{{item.statusText}}</text>
+      </view>
+      <text class="oc-addr">📍 {{item.address}}</text>
+      <view class="purchase-head" wx:if="{{item.status === 'purchasing'}}">
+        <text>需购买商品</text>
+        <text class="purchase-count">{{item.purchaseDone}}/{{item.purchaseTotal}} 已购买</text>
+      </view>
+      <view class="oc-items purchase-list" wx:if="{{item.status === 'purchasing'}}">
+        <view
+          wx:for="{{item.items}}"
+          wx:key="name"
+          wx:for-item="g"
+          wx:for-index="gidx"
+          class="purchase-goods {{g.purchased ? 'purchase-goods-done' : ''}}"
+          catchtap="togglePurchaseItem"
+          data-id="{{item.id}}"
+          data-gidx="{{gidx}}"
+        >
+          <view class="purchase-check">
+            <text wx:if="{{g.purchased}}">✓</text>
+          </view>
+          <text class="purchase-name">{{g.name}}</text>
+          <text class="purchase-qty">×{{g.count}}</text>
+        </view>
+      </view>
+      <view class="oc-footer">
+        <text class="oc-total">¥{{item.total}}</text>
+        <view class="oc-actions">
+          <button class="action-btn" wx:if="{{item.status === 'pending'}}" catchtap="accept" data-id="{{item.id}}">接单</button>
+          <button class="action-btn" wx:if="{{item.status === 'accepted'}}" catchtap="startPurchase" data-id="{{item.id}}">开始采购</button>
+          <button class="action-btn action-btn-primary" wx:if="{{item.status === 'purchasing'}}" catchtap="startDeliver" data-id="{{item.id}}">开始配送</button>
+          <button class="action-btn action-btn-gray" wx:if="{{item.status === 'delivering'}}" catchtap="finishOrder" data-id="{{item.id}}">完成</button>
+          <button class="action-btn action-btn-outline" bindtap="goDetail" data-id="{{item.id}}">详情</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:if="{{filteredOrders.length === 0}}">
+    <text>暂无{{currentTabLabel}}订单</text>
+  </view>
+
+  <view class="safe-bottom"/>
+</view>
